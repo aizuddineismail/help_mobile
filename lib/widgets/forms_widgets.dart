@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:flutter/foundation.dart';
+import 'package:helpmobile/models/auth_user_model.dart';
 import 'dart:developer';
+
+import 'package:provider/provider.dart';
 
 class LoginForm extends StatefulWidget {
   @override
@@ -94,7 +97,10 @@ class _LoginFormState extends State<LoginForm> {
                 children: <Widget>[
                   RaisedButton(
                     color: Colors.blue,
-                    onPressed: () {},
+                    onPressed: () {
+                      Provider.of<AuthUserModel>(context, listen: false)
+                          .signIn();
+                    },
                     child: Text(
                       'Login',
                       style: TextStyle(
@@ -129,5 +135,100 @@ class _LoginFormState extends State<LoginForm> {
         _iconColor = Colors.grey;
       });
     }
+  }
+}
+
+class RegisterForm extends StatefulWidget {
+  @override
+  _RegisterFormState createState() => _RegisterFormState();
+}
+
+class _RegisterFormState extends State<RegisterForm> {
+  @override
+  Widget build(BuildContext context) {
+    return Form(
+      child: Column(
+        mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.all(4.0),
+            child: TextFormField(
+              decoration: InputDecoration(
+                labelText: "Username",
+                prefixIcon: Icon(Icons.account_circle),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(25.0),
+                  borderSide: BorderSide(),
+                ),
+              ),
+              textInputAction: TextInputAction.next,
+              onFieldSubmitted: (_) => FocusScope.of(context).nextFocus(),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(4.0),
+            child: TextFormField(
+              obscureText: true,
+              decoration: InputDecoration(
+                labelText: "Password",
+                prefixIcon: Icon(Icons.vpn_key),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(25.0),
+                  borderSide: BorderSide(),
+                ),
+              ),
+              textInputAction: TextInputAction.next,
+              onFieldSubmitted: (_) => FocusScope.of(context).nextFocus(),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(4.0),
+            child: TextFormField(
+              obscureText: true,
+              decoration: InputDecoration(
+                labelText: "Confirmed Password",
+                prefixIcon: Icon(Icons.vpn_key),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(25.0),
+                  borderSide: BorderSide(),
+                ),
+              ),
+              textInputAction: TextInputAction.next,
+              onFieldSubmitted: (_) => FocusScope.of(context).nextFocus(),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(4.0),
+            child: TextFormField(
+              decoration: InputDecoration(
+                labelText: "Email",
+                prefixIcon: Icon(Icons.alternate_email),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(25.0),
+                  borderSide: BorderSide(),
+                ),
+              ),
+              textInputAction: TextInputAction.next,
+              onFieldSubmitted: (_) => FocusScope.of(context).nextFocus(),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(4.0),
+            child: SizedBox(
+              height: 48,
+              width: double.infinity,
+              child: RaisedButton(
+                color: Colors.blue,
+                onPressed: () {},
+                child: Text('Sign up',
+                    style: TextStyle(fontSize: 16, color: Colors.white)),
+                shape: StadiumBorder(),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }

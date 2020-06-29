@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:helpmobile/screens/register_screen.dart';
 import 'package:helpmobile/widgets/buttons_widgets.dart';
 import 'package:helpmobile/widgets/forms_widgets.dart';
 
@@ -37,7 +38,12 @@ class LoginScreen extends StatelessWidget {
                       color: Colors.blue,
                     ),
                     SignUpButton(
-                      onPress: () {},
+                      onPress: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => RegisterScreen()));
+                      },
                       text: 'Register a new account',
                       icon: FontAwesomeIcons.addressBook,
                       color: Colors.green,

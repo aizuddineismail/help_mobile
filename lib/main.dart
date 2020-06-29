@@ -1,21 +1,26 @@
 import 'package:flutter/material.dart';
-import 'package:helpmobile/screens/login_screen.dart';
+import 'package:helpmobile/models/auth_user_model.dart';
+import 'package:helpmobile/widgets/auth_widget.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => AuthUserModel(),
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: LoginScreen()
+      home: AuthWidget(),
     );
   }
 }
